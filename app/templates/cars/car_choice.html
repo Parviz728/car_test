@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container mt-4">
+        <div class="input-group mb-3">
+            <form class="form" method="POST" action="{{ url_for('cars.index') }}">
+                <div class="input-group-prepend mt-4">
+                    <label class="input-group-text" for="inputGroupSelect01">Марка машины</label>
+                    <select name="car_model" class="custom-select" id="inputGroupSelect01">
+                        {% for car in cars %}
+                            {% if car.model == model %}
+                                <option selected value="{{ car.model }}">{{ car.model }}</option>
+                            {% else %}
+                                <option value="{{ car.model }}">{{ car.model }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-secondary btn-lg mt-4">Показать</button>
+            </form>
+        </div>
+        {% block cards %}{% endblock %}
+    </div>
+
+{% endblock content %}
